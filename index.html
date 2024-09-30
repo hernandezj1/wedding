@@ -12,29 +12,33 @@
             height: 100vh;
             margin: 0;
             position: relative;
-             background-color: #FFA299;
+            background-color: #FFA299; /* Set background color */
         }
         .main-content {
             flex-grow: 1;
-            overflow: hidden;
+            overflow-y: auto; /* Allow vertical scrolling */
             position: relative;
+            padding: 20px; /* Add padding around the main content */
+            margin-left: 250px; /* Leave space for navbar */
+            transition: margin-left 0.3s ease; /* Smooth transition */
         }
         .navbar {
             position: absolute;
             top: 0;
-            left: -250px;
+            left: -250px; /* Hide navbar off-screen */
             height: 100%;
             width: 250px;
-            background-color: #f8f9fa;
-            transition: left 0.3s ease;
+            background-color: #f8f9fa; /* Light background for the navbar */
+            transition: left 0.3s ease; /* Smooth slide effect */
             z-index: 1000;
         }
         .navbar.show {
-            left: 0;
+            left: 0; /* Show navbar when toggled */
         }
         .navbar a {
             padding: 10px 15px;
-            display: block;
+            display: block; /* Make links block elements */
+            color: #333; /* Dark text color for links */
         }
         .toggle-button {
             position: absolute;
@@ -42,10 +46,21 @@
             left: 10px;
             z-index: 1001;
         }
+        .embed-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.2225%; /* Maintain aspect ratio */
+            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); /* Box shadow for the embed */
+            margin-top: 1.6em;
+            margin-bottom: 0.9em;
+            border-radius: 8px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow */
+        }
         iframe {
+            position: absolute;
             width: 100%;
             height: 100%;
-            border: none;
+            border: none; /* Remove iframe border */
             padding: 0;
             margin: 0;
         }
@@ -75,19 +90,21 @@
             </ul>
         </div>
 
-        <div class="main-content">
-            <div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;border-radius: 8px; will-change: transform;">
-              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGSNP0prSw/sr8oZmqljlrQQuFP3PN5KA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-              </iframe>
+        <div class="main-content" id="mainContent">
+            <div class="embed-container">
+                <iframe loading="lazy" src="https://www.canva.com/design/DAGSNP0prSw/sr8oZmqljlrQQuFP3PN5KA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
             </div>
         </div>
+    </div>
 
     <script>
         const toggleButton = document.getElementById('toggleNavbar');
         const navbar = document.getElementById('navbar');
+        const mainContent = document.getElementById('mainContent');
 
         toggleButton.addEventListener('click', () => {
-            navbar.classList.toggle('show');
+            navbar.classList.toggle('show'); // Toggle navbar visibility
+            mainContent.style.marginLeft = navbar.classList.contains('show') ? '250px' : '0'; // Adjust main content margin
         });
     </script>
 
@@ -96,5 +113,3 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
