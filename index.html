@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,13 +8,10 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             height: 100vh;
             margin: 0;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #f8f9fa;
-            padding: 20px;
+            position: relative;
         }
         .main-content {
             flex-grow: 1;
@@ -34,57 +30,68 @@
         .password-input {
             margin-bottom: 10px;
         }
+        .accordion-button::after {
+            content: '';
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 5.5a.5.5 0 0 1 .707 0L8 10.793l5.793-5.293a.5.5 0 1 1 .707.707l-6 6a.5.5 0 0 1-.707 0l-6-6a.5.5 0 0 1 0-.707z"/></svg>');
+            background-size: 16px 16px;
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            transition: transform 0.2s ease-in-out;
+        }
+        .accordion-button:not(.collapsed) {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <h2>Navigation</h2>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#wedding-details">Wedding Details</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#registry">Registry</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#wedding-party" id="weddingPartyLink">Wedding Party Portal</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="main-content">
-        <!-- Embed your Canva website here -->
-        <iframe src="<div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
- padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
- border-radius: 8px; will-change: transform;">
-  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-    src="https://www.canva.com/design/DAGSNP0prSw/sr8oZmqljlrQQuFP3PN5KA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
-  </iframe>
-</div>
-<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGSNP0prSw&#x2F;sr8oZmqljlrQQuFP3PN5KA&#x2F;view?utm_content=DAGSNP0prSw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Wedding-website</a> by Jose Angel Hernandez" title="Canva Website"></iframe>
-
-        <!-- Password Protected Section -->
-        <div class="password-protected" id="passwordProtectedSection">
-            <h2>Wedding Party Portal</h2>
-            <p>Welcome to the Wedding Party Portal!</p>
-            <!-- Add your content for the Wedding Party Portal here -->
+    <div class="container">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#navbarAccordion" aria-expanded="false" aria-controls="navbarAccordion" style="position: absolute; top: 10px; right: 10px;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse" id="navbarAccordion">
+            <div class="card card-body">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wedding-details">Wedding Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#registry">Registry</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wedding-party" id="weddingPartyLink">Wedding Party Portal</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="password-input" id="passwordInputContainer">
-            <label for="password">Enter Password:</label>
-            <input type="password" id="password" class="form-control">
-            <button id="submitPassword" class="btn btn-primary">Submit</button>
-            <div id="passwordMessage" style="color: red;"></div>
+        <div class="main-content">
+            <!-- Embed your Canva website here -->
+            <iframe src="https://www.canva.com/design/DAGSNP0prSw/sr8oZmqljlrQQuFP3PN5KA/view" title="Canva Website"></iframe>
+
+            <!-- Password Protected Section -->
+            <div class="password-protected" id="passwordProtectedSection">
+                <h2>Wedding Party Portal</h2>
+                <p>Welcome to the Wedding Party Portal!</p>
+                <!-- Add your content for the Wedding Party Portal here -->
+            </div>
+
+            <div class="password-input" id="passwordInputContainer">
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" class="form-control">
+                <button id="submitPassword" class="btn btn-primary">Submit</button>
+                <div id="passwordMessage" style="color: red;"></div>
+            </div>
         </div>
     </div>
 
     <script>
         // Password protection for the Wedding Party Portal
-        const password = "S&Jwegotthis1113"; // Set your password here
+        const password = "S&J1311"; // Set your password here
         const weddingPartyLink = document.getElementById('weddingPartyLink');
         const passwordInputContainer = document.getElementById('passwordInputContainer');
         const passwordProtectedSection = document.getElementById('passwordProtectedSection');
@@ -114,3 +121,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
