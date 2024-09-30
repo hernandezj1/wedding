@@ -1,137 +1,116 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page with Carousel</title>
+    <title>Your Wedding Website</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #fff;
-        }
-
-        .landing-page {
+            display: flex;
             height: 100vh;
-            background: url('https://raw.githubusercontent.com/hernandezj1/wedding/refs/heads/main/Screenshot%20(393).png') no-repeat center center/cover;
+            margin: 0;
         }
-
-        .carousel {
-            background-color: #FFA299;
-            padding: 20px 0;
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
-
-        .carousel-title {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        .carousel-track-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
+        .main-content {
+            flex-grow: 1;
             overflow: hidden;
         }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-        }
-
-        .carousel img {
+        iframe {
             width: 100%;
-            display: block;
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
+            height: 100%;
             border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
         }
-
-        .carousel-button.left {
-            left: 10px;
+        .password-protected {
+            display: none;
+            padding: 20px;
+            background-color: #f8f9fa;
         }
-
-        .carousel-button.right {
-            right: 10px;
+        .password-input {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-    <div class="landing-page"></div>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#wedding-details">Wedding Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#registry">Registry</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#wedding-party" id="weddingPartyLink">Wedding Party Portal</a>
+            </li>
+        </ul>
+    </div>
 
-    <div class="carousel">
-        <div class="carousel-title">Our Journey</div>
-        <div class="carousel-track-container">
-            <ul class="carousel-track">
-                <li class="carousel-slide current-slide">
-                    <img src="photo1.jpg" alt="Photo 1">
-                </li>
-                <li class="carousel-slide">
-                    <img src="photo2.jpg" alt="Photo 2">
-                </li>
-                <li class="carousel-slide">
-                    <img src="photo3.jpg" alt="Photo 3">
-                </li>
-            </ul>
+    <div class="main-content">
+        <!-- Embed your Canva website here -->
+        <iframe src="<div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAGSNP0prSw/sr8oZmqljlrQQuFP3PN5KA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGSNP0prSw&#x2F;sr8oZmqljlrQQuFP3PN5KA&#x2F;view?utm_content=DAGSNP0prSw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Wedding-website</a> by Jose Angel Hernandez" title="Canva Website"></iframe>
+
+        <!-- Password Protected Section -->
+        <div class="password-protected" id="passwordProtectedSection">
+            <h2>Wedding Party Portal</h2>
+            <p>Welcome to the Wedding Party Portal!</p>
+            <!-- Add your content for the Wedding Party Portal here -->
         </div>
-        <button class="carousel-button left">‹</button>
-        <button class="carousel-button right">›</button>
+
+        <div class="password-input" id="passwordInputContainer">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" class="form-control">
+            <button id="submitPassword" class="btn btn-primary">Submit</button>
+            <div id="passwordMessage" style="color: red;"></div>
+        </div>
     </div>
 
     <script>
-        const track = document.querySelector('.carousel-track');
-        const slides = Array.from(track.children);
-        const nextButton = document.querySelector('.carousel-button.right');
-        const prevButton = document.querySelector('.carousel-button.left');
+        // Password protection for the Wedding Party Portal
+        const password = "S&Jwegotthis1113"; // Set your password here
+        const weddingPartyLink = document.getElementById('weddingPartyLink');
+        const passwordInputContainer = document.getElementById('passwordInputContainer');
+        const passwordProtectedSection = document.getElementById('passwordProtectedSection');
+        const submitPasswordButton = document.getElementById('submitPassword');
+        const passwordMessage = document.getElementById('passwordMessage');
 
-        const slideWidth = slides[0].getBoundingClientRect().width;
-
-        // Arrange the slides next to one another
-        const setSlidePosition = (slide, index) => {
-            slide.style.left = slideWidth * index + 'px';
-        };
-        slides.forEach(setSlidePosition);
-
-        const moveToSlide = (track, currentSlide, targetSlide) => {
-            track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
-            currentSlide.classList.remove('current-slide');
-            targetSlide.classList.add('current-slide');
-        };
-
-        // When right button is clicked, move slides to the left
-        nextButton.addEventListener('click', () => {
-            const currentSlide = track.querySelector('.current-slide');
-            const nextSlide = currentSlide.nextElementSibling;
-
-            if (nextSlide) {
-                moveToSlide(track, currentSlide, nextSlide);
-            }
+        weddingPartyLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            passwordInputContainer.style.display = 'block'; // Show password input
+            passwordProtectedSection.style.display = 'none'; // Hide protected section
         });
 
-        // When left button is clicked, move slides to the right
-        prevButton.addEventListener('click', () => {
-            const currentSlide = track.querySelector('.current-slide');
-            const prevSlide = currentSlide.previousElementSibling;
-
-            if (prevSlide) {
-                moveToSlide(track, currentSlide, prevSlide);
+        submitPasswordButton.addEventListener('click', () => {
+            const enteredPassword = document.getElementById('password').value;
+            if (enteredPassword === password) {
+                passwordMessage.textContent = '';
+                passwordInputContainer.style.display = 'none'; // Hide password input
+                passwordProtectedSection.style.display = 'block'; // Show protected section
+            } else {
+                passwordMessage.textContent = 'Incorrect password. Please try again.';
             }
         });
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
